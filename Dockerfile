@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM bachelorthesis/ubuntu
+FROM bachelorthesis/docker-ubuntu
 
 # Install Java.
 RUN \
