@@ -1,4 +1,4 @@
-# Docker Arch Linux
+# Docker Java
 
 This repository contains **Dockerfiles** for Java docker images, and a **Vagrantfile** for local development. 
 
@@ -8,7 +8,7 @@ This repository contains **Dockerfiles** for Java docker images, and a **Vagrant
 * `bachelorthesis/java:jdk7-openjdk` : OpenJDK Java 7 Developement Kit
 * `bachelorthesis/java:jre7-openjdk` : OpenJDK Java 7 Runtime Environment
 * `bachelorthesis/java:jdk8-openjdk` : OpenJDK Java 8 Developement Kit
-* `bachelorthesis/java:jre7-openjdk` : OpenJDK Java 8 Runtime Environment
+* `bachelorthesis/java:jre8-openjdk` : OpenJDK Java 8 Runtime Environment
 
 ## Resources
 
