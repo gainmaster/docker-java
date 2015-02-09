@@ -1,17 +1,14 @@
-# Oracle Java 8 Docker image
+# Docker Arch Linux
 
-This repository contains a **Dockerfile** for a base Oracle Java 8 Docker image. It provides **Vagrantfiles** for development, and **shell scripts** for easy startup of containers. This repository is a part of an automated build, published to the [Docker Hub][docker_hub_repository].
+This repository contains **Dockerfiles** for Java docker images, and a **Vagrantfile** for local development. 
 
-**Base image:** [bachelorthesis/docker-ubuntu][docker_hub_base_image]
+## Docker hub builds
 
-[docker_hub_repository]: https://registry.hub.docker.com/u/bachelorthesis/docker-java/
-[docker_hub_base_image]: https://registry.hub.docker.com/u/bachelorthesis/docker-ubuntu/
-
-### Installed packages
-
-* [Oracle Java 8][java8] - Java 8 Standard Edition Developement Kit
-
-[java8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+* `bachelorthesis/java:latest` (default) : OpenJDK Java 8 Runtime Environment
+* `bachelorthesis/java:jdk7-openjdk` : OpenJDK Java 7 Developement Kit
+* `bachelorthesis/java:jre7-openjdk` : OpenJDK Java 7 Runtime Environment
+* `bachelorthesis/java:jdk8-openjdk` : OpenJDK Java 8 Developement Kit
+* `bachelorthesis/java:jre7-openjdk` : OpenJDK Java 8 Runtime Environment
 
 ## Resources
 
