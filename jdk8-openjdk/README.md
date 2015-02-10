@@ -2,10 +2,10 @@
 
 This repository contains a **Dockerfile** for a OpenJDK Java 8 Developement Kit docker image. This repository is a part of an automated build, published to the [Docker Hub][docker_hub_repository].
 
-**Base image:** [bachelorthesis/archlinux-base][docker_hub_base_image]
+**Base image:** [bachelorthesis/archlinux][docker_hub_base_image]
 
 [docker_hub_repository]: https://registry.hub.docker.com/u/bachelorthesis/java/
-[docker_hub_base_image]: https://registry.hub.docker.com/u/bachelorthesis/archlinux-base/
+[docker_hub_base_image]: https://registry.hub.docker.com/u/bachelorthesis/archlinux/
 
 ### Installed packages
 

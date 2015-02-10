@@ -1,5 +1,5 @@
 # Pull base image
-FROM bachelorthesis/archlinux-base
+FROM bachelorthesis/archlinux
 
 # Install base-devel package
 RUN pacman -S --noconfirm jre7-openjdk-headless
