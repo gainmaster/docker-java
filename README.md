@@ -1,6 +1,11 @@
 # Docker Java
 
-This repository contains **Dockerfiles** for Java docker images, and a **Vagrantfile** for local development. 
+This repository contains **Dockerfiles** for Java docker images, and a **Vagrantfile** for local development. This repository is a part of an automated build, published to the [Docker Hub][docker_hub_repository].
+
+**Base image:** [bachelorthesis/archlinux][docker_hub_base_image]
+
+[docker_hub_repository]: https://registry.hub.docker.com/u/bachelorthesis/java/
+[docker_hub_base_image]: https://registry.hub.docker.com/u/bachelorthesis/archlinux/
 
 ## Docker Hub automated build tags
 
