@@ -9,6 +9,6 @@ This repository contains a **Dockerfile** for a OpenJDK Java 8 Runtime Environme
 
 ### Installed packages
 
-* [jre8-openjdk-headless][jre8-openjdk-headless] - OpenJDK Java 8 Runtime Environment without any graphical tool
+* [jre8-openjdk][jre8-openjdk] - OpenJDK Java 8 Runtime Environment
 
-[jre8-openjdk-headless]: https://www.archlinux.org/packages/extra/x86_64/jre8-openjdk-headless/
+[jre8-openjdk]: https://www.archlinux.org/packages/extra/x86_64/jre8-openjdk/

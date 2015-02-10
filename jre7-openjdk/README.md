@@ -9,6 +9,6 @@ This repository contains a **Dockerfile** for a OpenJDK Java 7 Runtime Environme
 
 ### Installed packages
 
-* [jre7-openjdk-headless][jre7-openjdk-headless] - OpenJDK Java 7 Runtime Environment without any graphical tool
+* [jre7-openjdk][jre7-openjdk] - OpenJDK Java 7 Runtime Environment
 
-[jre7-openjdk-headless]: https://www.archlinux.org/packages/extra/x86_64/jre7-openjdk-headless/
+[jre7-openjdk]: https://www.archlinux.org/packages/extra/x86_64/jre7-openjdk/
