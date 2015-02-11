@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
 
       # Docker run configuration
       d.cmd     = ["/usr/bin/bash"] 
-      d.volumes = ["/home/core/share/docker-java:/opt/shared:rw"]
+      d.volumes = ["/home/core/shared/docker-java:/opt/shared:rw"]
 
       # Vagrant host configuration
       d.force_host_vm       = true
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
 
       # Docker run configuration
       d.cmd     = ["/usr/bin/bash"] 
-      d.volumes = ["/home/core/share/docker-java:/opt/shared:rw"]
+      d.volumes = ["/home/core/shared/docker-java:/opt/shared:rw"]
 
       # Vagrant host configuration
       d.force_host_vm       = true
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 
       # Docker run configuration
       d.cmd     = ["/usr/bin/bash"] 
-      d.volumes = ["/home/core/share/docker-java:/opt/shared:rw"]
+      d.volumes = ["/home/core/shared/docker-java:/opt/shared:rw"]
 
       # Vagrant host configuration
       d.force_host_vm       = true
@@ -66,7 +66,7 @@ Vagrant.configure("2") do |config|
 
       # Docker run configuration
       d.cmd     = ["/usr/bin/bash"] 
-      d.volumes = ["/home/core/share/docker-java:/opt/shared:rw"]
+      d.volumes = ["/home/core/shared/docker-java:/opt/shared:rw"]
 
       # Vagrant host configuration
       d.force_host_vm       = true
