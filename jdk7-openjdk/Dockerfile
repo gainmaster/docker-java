@@ -2,7 +2,7 @@
 FROM bachelorthesis/archlinux
 
 # Install base-devel package
-RUN pacman -S --noconfirm jdk7-openjdk
+RUN pacman -Sy --noconfirm jdk7-openjdk
 
 # Define working directory
 WORKDIR /root

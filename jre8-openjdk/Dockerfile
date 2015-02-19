@@ -2,7 +2,7 @@
 FROM bachelorthesis/archlinux
 
 # Install base-devel package
-RUN pacman -S --noconfirm jre8-openjdk
+RUN pacman -Sy --noconfirm jre8-openjdk
 
 # Define working directory
 WORKDIR /root
