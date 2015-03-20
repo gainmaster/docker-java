@@ -24,7 +24,7 @@ build() {
 
     for VERSION in "${BUILD_VERSIONS[@]}"; do
         echo "[build.sh] - Building ${IMAGE_NAME}:${VERSION}."
-        docker build -t "${IMAGE_NAME}:${VERSION}" $(realpath "${VERSION_DIRECTORY}/${VERSION}")
+        docker build -t "${IMAGE_NAME}:${VERSION}" "${VERSION_DIRECTORY}/${VERSION}"
         echo "[build.sh] - Finished building ${IMAGE_NAME}:${VERSION}."
     done
 }
