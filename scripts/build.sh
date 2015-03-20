@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -x              # Print command traces before executing command
+trap 'exit 1' ERR   # Exit script with error if command fails
+
+# Set working directory to project root
 cd $(dirname "${BASH_SOURCE[0]}") && cd ../
 
 declare IMAGE_NAME="bachelorthesis/java"
@@ -23,14 +27,12 @@ build() {
     done
 
     for VERSION in "${BUILD_VERSIONS[@]}"; do
-        echo "[build.sh] - Building ${IMAGE_NAME}:${VERSION}."
         docker build -t "${IMAGE_NAME}:${VERSION}" "${VERSION_DIRECTORY}/${VERSION}"
-        echo "[build.sh] - Finished building ${IMAGE_NAME}:${VERSION}."
     done
 }
 
 if [[ -z $(which docker) ]]; then
-    echo "[build.sh] - Missing docker client which is required for building."
+    echo "Missing docker client which is required for building."
     exit 2
 fi
 
