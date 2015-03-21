@@ -18,10 +18,10 @@ ship() {
         done
     fi
 
-    docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+    sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     for VERSION in "${SHIP_VERSIONS[@]}"; do 
-        docker push "${IMAGE_NAME}:${VERSION}"
+        sudo docker push "${IMAGE_NAME}:${VERSION}"
     done
 }
 
