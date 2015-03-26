@@ -58,37 +58,4 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.define "jre8-openjdk", autostart: false do |v|
-    v.vm.provider "docker" do |d|
-      # Docker image properties
-      d.build_dir       = "./version/jre8-openjdk"
-      d.remains_running = false
-
-      # Docker run configuration
-      d.cmd     = ["/usr/bin/bash"] 
-      d.volumes = ["/home/core/shared/docker-java:/opt/shared:rw"]
-
-      # Vagrant host configuration
-      d.force_host_vm       = true
-      d.vagrant_vagrantfile = "../coreos-vagrant/Vagrantfile"
-      d.vagrant_machine     = "coreos-01"
-    end
-  end
-
-  config.vm.define "build", autostart: false do |v|
-    v.vm.provider "docker" do |d|
-      # Docker image properties
-      d.image       = "bachelorthesis/jenkins:slave"
-      d.remains_running = false
-
-      # Docker run configuration
-      d.create_args = ["-i", "--privileged", "-w='/opt/shared'"]
-      d.volumes     = ["/home/core/shared/docker-java:/opt/shared:rw"]
-
-      # Vagrant host configuration
-      d.force_host_vm       = true
-      d.vagrant_vagrantfile = "../coreos-vagrant/Vagrantfile"
-      d.vagrant_machine     = "coreos-01"
-    end
-  end
 end
