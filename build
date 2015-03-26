@@ -55,20 +55,29 @@ function test {
 }
 
 function push {
-	tag="${1}"
-    docker history "${IMAGE_NAME}:${tag}" 2> /dev/null
+	version="${1}"
+    version_directory="${VERSIONS_DIRECTORY}/${version}"
 
-    if [ $? -eq 1 ]; then
-        echo "Cant push ${IMAGE_NAME}:${tag}, the image does not exist."
-        exit 2
+    if [ ! -d "$version_directory" ]; then
+        exit 1;
     fi
+
 
     [ -z "$DOCKER_EMAIL" ]    && { echo "Need to set DOCKER_EMAIL";    exit 1; }
     [ -z "$DOCKER_USER" ]     && { echo "Need to set DOCKER_USER";     exit 1; }
     [ -z "$DOCKER_PASSWORD" ] && { echo "Need to set DOCKER_PASSWORD"; exit 1; }
 
     sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-    sudo docker push "${IMAGE_NAME}:${tag}"
+
+    while read tag; do
+        docker history "${IMAGE_NAME}:${tag}" 2> /dev/null
+        if [ $? -eq 1 ]; then
+            echo "Cant push ${IMAGE_NAME}:${tag}, the image does not exist."
+            exit 2
+        fi
+        
+        sudo docker push "${IMAGE_NAME}:${tag}"
+    done < "${version_directory}/tags"
 }
 
 versions=()
