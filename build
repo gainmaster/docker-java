@@ -3,25 +3,12 @@
 set -x              # Print command traces before executing command
 trap 'exit 1' ERR   # Exit script with error if command fails
 
-# Validate that docker exists
+cd $(dirname "${BASH_SOURCE[0]}")
+
 if [[ -z $(which docker) ]]; then
     echo "Missing docker client which is required for building, testing and pushing."
     exit 2
 fi
-
-# Validate that bats exists
-if [[ -z $(which bats) ]]; then
-    echo "Missing bats, which is required for testing."
-    exit 2
-fi
-
-# If script is not executed as root user, docker needs sudo
-if [[ $EUID -ne 0 ]]; then
-    alias docker='sudo docker'
-fi
-
-# Set working directory to project root
-cd $(dirname "${BASH_SOURCE[0]}")
 
 
 declare IMAGE_NAME="bachelorthesis/java"
@@ -51,23 +38,33 @@ function test {
         exit 2
     fi
 
+    if [[ -z $(which bats) ]]; then
+        echo "Missing bats, which is required for testing."
+        exit 2
+    fi
+
     bats "./test/${version}.bats"   
 }
+
 
 function push {
 	version="${1}"
     version_directory="${VERSIONS_DIRECTORY}/${version}"
 
     if [ ! -d "$version_directory" ]; then
-        exit 1;
+        echo "Cant push ${IMAGE_NAME}:${tag}, version folder does not exist."
+        exit 2;
     fi
-
 
     [ -z "$DOCKER_EMAIL" ]    && { echo "Need to set DOCKER_EMAIL";    exit 1; }
     [ -z "$DOCKER_USER" ]     && { echo "Need to set DOCKER_USER";     exit 1; }
     [ -z "$DOCKER_PASSWORD" ] && { echo "Need to set DOCKER_PASSWORD"; exit 1; }
 
-    sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+    if [[ $EUID -ne 0 ]]; then
+        sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+    else
+        docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+    fi
 
     while read tag; do
         docker history "${IMAGE_NAME}:${tag}" 2> /dev/null
@@ -76,19 +73,29 @@ function push {
             exit 2
         fi
         
-        sudo docker push "${IMAGE_NAME}:${tag}"
+        if [[ $EUID -ne 0 ]]; then
+            sudo docker push "${IMAGE_NAME}:${tag}"
+        else
+            docker push "${IMAGE_NAME}:${tag}"
+        fi
     done < "${version_directory}/tags"
 }
 
+
+#
+# Handle input
+#
+
 versions=()
+actions=("$@")
 
 while getopts ":v:" opt; do
   case $opt in
     v)
-      versions+=("$OPTARG") >&2
+      versions+=("$OPTARG")
       ;;
     \?)
-      echo "Invalid option: -$OPTARG" >&2
+      echo "Invalid option: -$OPTARG"
       ;;
   esac
 done
@@ -99,7 +106,6 @@ if [ ${#versions[@]} -eq 0 ]; then
     done
 fi
 
-actions=("$@")
 if [ ${#actions[@]} -eq 0 ]; then
     actions=(build test push)
 fi
